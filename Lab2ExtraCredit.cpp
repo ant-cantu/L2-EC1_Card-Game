@@ -1,47 +1,47 @@
 //* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-//* Program name    : Lab2ExtraCredit										* 
-//*																			* 
-//* Written by      : Anthony Cantu											* 
-//*																			* 
-//* Purpose         : Playing card game, checks for straight, flush,		*
-//*					  full house, and 4 of a kind. Ability to replace		*
-//*					  and discard cards drawn from a deck.                  * 
-//*																			* 
-//* Inputs          : User answers prompts to discard and replace cards		*
-//*					  or to continue a game after a 4 of a kind if			*
-//*					  possible.												* 
-//*																			* 
-//* Outputs         : Display entry request and displays currently			*
-//*					  held hand and if user would like to discard			*
-//*					  or replace the cards in hand with a drawn card		* 
-//*																			* 
-//* Calls           : No internal or external calls							* 
-//*																			* 
-//* Structure       : BEGIN													* 
-//*                        Straight line code no sub-processes				* 
-//*                   STOP													* 
-//*                        End of Program									* 
-//*																			* 
+//* Program name    : Lab2ExtraCredit					    * 
+//*									    * 
+//* Written by      : Anthony Cantu					    * 
+//*									    * 
+//* Purpose         : Playing card game, checks for straight, flush,	    *
+//*		      full house, and 4 of a kind. Ability to replace	    *
+//*		      and discard cards drawn from a deck.                  * 
+//*									    * 
+//* Inputs          : User answers prompts to discard and replace cards	    *
+//*		      or to continue a game after a 4 of a kind if	    *
+//*		      possible.						    * 
+//*									    * 
+//* Outputs         : Display entry request and displays currently	    *
+//*		      held hand and if user would like to discard	    *
+//*		      or replace the cards in hand with a drawn card	    * 
+//*									    * 
+//* Calls           : No internal or external calls			    * 
+//*									    * 
+//* Structure       : BEGIN						    * 
+//*                        Straight line code no sub-processes		    * 
+//*                   STOP						    * 
+//*                        End of Program				    * 
+//*									    * 
 //*-------------------------------------------------------------------------* 
-//* Collaboration   : Got help from Professor Urrutia						*
-//*																			*
-//*					  Additional help from classmates:						*
-//*						Daniel Balolong										*
-//*							- Exchanged ideas and methods					*
-//*							  on how to accomplish the goal of				*
-//*							  this application								*
-//*																			*
-//*					  String::at explanation								*
-//*						https://cplusplus.com/reference/string/string/at/	*
-//*						used to return a character from given				*
-//*						position of a string								* 
-//*																			* 
+//* Collaboration   : Got help from Professor Urrutia			    *
+//*									    *
+//*		      Additional help from classmates:			    *
+//*			Daniel Balolong					    *
+//*			   - Exchanged ideas and methods		    *
+//*			     on how to accomplish the goal of		    *
+//*			     this application				    *
+//*									    *
+//*		       String::at explanation				    *
+//*			 https://cplusplus.com/reference/string/string/at/  *
+//*			 used to return a character from given		    *
+//*			 position of a string				    * 
+//*									    * 
 //*-------------------------------------------------------------------------* 
-//* Change Log:																* 
-//*                         Revision										* 
-//*       Date    Changed  Rel Ver Mod Purpose								* 
-//* 10/03/23      acantu 000.000.000 Initial release of program				* 
-//*																			* 
+//* Change Log:								    * 
+//*                         Revision					    * 
+//*       Date    Changed  Rel Ver Mod Purpose				    * 
+//* 10/03/23      acantu 000.000.000 Initial release of program		    * 
+//*									    * 
 //* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 #include <iostream>
 #include <cstdlib>
@@ -63,23 +63,23 @@ bool checkStraight();
 
 //Variables
 const string DECK[52] = {
-						"2H", "3H", "4H", "5H", "6H", "7H", "8H", "9H", "10H", "JH", "QH", "KH", "AH",	//Hearts
-						"2C", "3C", "4C", "5C", "6C", "7C", "8C", "9C", "10C", "JC", "QC", "KC", "AC",	//Clubs
-						"2D", "3D", "4D", "5D", "6D", "7D", "8D", "9D", "10D", "JD", "QD", "KD", "AD",	//Diamonds
-						"2S", "3S", "4S", "5S", "6S", "7S", "8S", "9S", "10S", "JS", "QS", "KS", "AS",	//Spades
+				"2H", "3H", "4H", "5H", "6H", "7H", "8H", "9H", "10H", "JH", "QH", "KH", "AH",	//Hearts
+				"2C", "3C", "4C", "5C", "6C", "7C", "8C", "9C", "10C", "JC", "QC", "KC", "AC",	//Clubs
+				"2D", "3D", "4D", "5D", "6D", "7D", "8D", "9D", "10D", "JD", "QD", "KD", "AD",	//Diamonds
+				"2S", "3S", "4S", "5S", "6S", "7S", "8S", "9S", "10S", "JS", "QS", "KS", "AS",	//Spades
 };
 string usedCards[52] = { " " };		//Initalize an array of used cards with 52 length
-int cardsDealt = 0;					//Total number of cards that have been delt
-int hand[5];						//Array to store the hand held
-int usedRank[13] = { 0 };			//Array to store the ranks drawn from the deck
-bool winner = false;				//Boolean status for if a winning hand has been declared, initialize to false
+int cardsDealt = 0;			//Total number of cards that have been delt
+int hand[5];				//Array to store the hand held
+int usedRank[13] = { 0 };		//Array to store the ranks drawn from the deck
+bool winner = false;			//Boolean status for if a winning hand has been declared, initialize to false
 bool fourOfKindPossible = false;	//Boolean status for if a four of a kind is still possible in the deck
-char q;								//Placeholder for pausing application
+char q;					//Placeholder for pausing application
 
 int main()
 {
-	string decission;			//String to hold user input for prompts
-	int newCard;				//Interger to temporarily hold the new card drawn
+	string decission;		//String to hold user input for prompts
+	int newCard;			//Interger to temporarily hold the new card drawn
 	bool validInput = false;	//Boolean status for user input
 
 	srand(time(0));
